@@ -1,8 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 const projectItems = [
   {
@@ -24,40 +21,6 @@ const projectItems = [
     url: "https://github.com/joakoromero/dashboard-analytics",
   },
 ];
-
-const settings = {
-  dots: true,
-  infinite: true,
-  autoplay: true,
-  autoplaySpeed: 3000,
-  speed: 700,
-  fade: true,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: false,
-  pauseOnHover: false,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        fade: false,
-        arrows: true,
-      },
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        fade: false,
-        arrows: false,
-        dots: true,
-      },
-    },
-  ],
-};
 
 const sections = [
   {
@@ -112,22 +75,17 @@ const sections = [
     bg: "bg-gray-800",
     content: (
       <div className="w-full max-w-4xl px-2 sm:px-4 select-text">
-        <Slider {...settings}>
+        <ul className="space-y-4">
           {projectItems.map(({ title, description, tech, url }) => (
-            <a
-              key={title}
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block bg-black hover:bg-gray-700 transition-colors rounded-xl p-8 shadow-lg cursor-pointer"
-              aria-label={`Proyecto: ${title}`}
-            >
-              <h4 className="text-2xl font-bold text-white">{title}</h4>
-              <p className="text-gray-400 mt-2">{description}</p>
-              <p className="text-gray-500 mt-3 italic text-sm">{tech}</p>
-            </a>
+            <li key={title} className="block bg-black hover:bg-gray-700 transition-colors rounded-xl p-6 shadow-lg cursor-pointer">
+              <a href={url} target="_blank" rel="noopener noreferrer" aria-label={`Proyecto: ${title}`}>
+                <h4 className="text-2xl font-bold text-white">{title}</h4>
+                <p className="text-gray-400 mt-2">{description}</p>
+                <p className="text-gray-500 mt-3 italic text-sm">{tech}</p>
+              </a>
+            </li>
           ))}
-        </Slider>
+        </ul>
       </div>
     ),
   },
@@ -225,30 +183,24 @@ export default function App() {
         }
 
         @media (max-width: 1024px) {
-          html, body, #root {
-            height: auto;
-            overflow-y: auto;
-          }
           .grid-container {
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto auto auto;
-            height: auto;
+            grid-template-columns: 1fr; /* Cambiado a una columna en pantallas más pequeñas */
+            grid-template-rows: auto auto auto auto; 
+            height: auto; /* Permitir altura automática */
             padding: 12px;
-            overflow-y: auto;
+            overflow-y: auto; /* Permitir desplazamiento vertical */
           }
           .about, .skills, .projects, .contact {
-            grid-area: auto;
+            grid-area: auto; /* Permitir que los elementos se apilen */
           }
         }
 
         @media (max-width: 640px) {
           .grid-container {
-            grid-template-columns: 1fr;
-            grid-template-rows: auto auto auto auto;
-            gap: 16px;
-            height: auto;
-            padding: 10px;
-            overflow-y: auto;
+            padding: 10px; /* Ajustar el padding para pantallas muy pequeñas */
+          }
+          .about, .skills, .projects, .contact {
+            padding: 8px; /* Ajustar el padding interno de los elementos */
           }
         }
       `}</style>
@@ -271,3 +223,4 @@ export default function App() {
     </>
   );
 }
+
