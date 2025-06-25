@@ -36,6 +36,27 @@ const settings = {
   slidesToScroll: 1,
   arrows: false,
   pauseOnHover: false,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        fade: false,
+        arrows: true,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        fade: false,
+        arrows: false,
+        dots: true,
+      },
+    },
+  ],
 };
 
 const sections = [
@@ -90,7 +111,7 @@ const sections = [
     title: "Proyectos",
     bg: "bg-gray-800",
     content: (
-      <div className="w-full max-w-4xl px-4 select-text">
+      <div className="w-full max-w-4xl px-2 sm:px-4 select-text">
         <Slider {...settings}>
           {projectItems.map(({ title, description, tech, url }) => (
             <a
@@ -182,14 +203,14 @@ export default function App() {
         }
 
         h2 {
-        position: relative;
-        padding-bottom: 8px;
-        margin-bottom: 24px;
-        color: white;
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 1.75rem;
-        letter-spacing: 0.03em;
-        text-transform: uppercase;
+          position: relative;
+          padding-bottom: 8px;
+          margin-bottom: 24px;
+          color: white;
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 1.75rem;
+          letter-spacing: 0.03em;
+          text-transform: uppercase;
         }
         h2::after {
           content: "";
